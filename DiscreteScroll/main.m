@@ -7,7 +7,7 @@ CGEventRef cgEventCallback(CGEventTapProxy proxy, CGEventType type,
                            CGEventRef event, void *refcon)
 {
     if (!CGEventGetIntegerValueField(event, kCGScrollWheelEventIsContinuous)) {
-        int64_t delta = CGEventGetIntegerValueField(event, kCGScrollWheelEventDeltaAxis1);
+        int64_t delta = CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1);
         
         CGEventSetIntegerValueField(event, kCGScrollWheelEventDeltaAxis1, SIGN(delta) * LINES);
     }
