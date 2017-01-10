@@ -8,8 +8,10 @@ CGEventRef cgEventCallback(CGEventTapProxy proxy, CGEventType type,
 {
     if (!CGEventGetIntegerValueField(event, kCGScrollWheelEventIsContinuous)) {
         int64_t delta = CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1);
+        int64_t sign = SIGN(delta);
+        if (delta * sign < LINES) delta = sign * LINES; // clamp scrolling magnitude to a minimum
         
-        CGEventSetIntegerValueField(event, kCGScrollWheelEventDeltaAxis1, SIGN(delta) * LINES);
+        CGEventSetIntegerValueField(event, kCGScrollWheelEventDeltaAxis1, delta);
     }
     
     return event;
