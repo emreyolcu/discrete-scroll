@@ -1,6 +1,6 @@
 # Discrete Scroll
 
-![](https://img.shields.io/github/downloads/emreyolcu/discrete-scroll/total.svg)
+[![Downloads](https://img.shields.io/github/downloads/emreyolcu/discrete-scroll/total.svg)](https://github.com/emreyolcu/discrete-scroll/releases)
 
 Fix for OS X's scroll wheel problem
 
