@@ -2,7 +2,11 @@
 
 [![Downloads](https://img.shields.io/github/downloads/emreyolcu/discrete-scroll/total.svg)](https://github.com/emreyolcu/discrete-scroll/releases)
 
-Fix for OS X's scroll wheel problem
+Fix for macOS's unnecessary scroll acceleration
+
+## Supported versions
+
+As of 2021, this fix works on all the recent macOS versions, specifically 10.9–11.
 
 ## Installation
 
