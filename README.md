@@ -11,7 +11,7 @@ As of 2021, this fix works on all the recent macOS versions, specifically 10.9â€
 ## Installation
 
 You may download the binary
-[here](https://github.com/emreyolcu/discrete-scroll/releases/download/v0.1.1/DiscreteScroll.zip). It
+[here](https://github.com/emreyolcu/discrete-scroll/releases/download/v0.1.1u/DiscreteScroll.zip). It
 runs in the background and allows you to scroll 3 lines with each tick of the
 wheel.
 
