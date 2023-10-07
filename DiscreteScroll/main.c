@@ -1,4 +1,4 @@
-#import <ApplicationServices/ApplicationServices.h>
+#include <ApplicationServices/ApplicationServices.h>
 
 #define SIGN(x) (((x) > 0) - ((x) < 0))
 #define LINES 3
