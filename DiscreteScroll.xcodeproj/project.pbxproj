@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C32391431DE7B5670068C5B9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C32391421DE7B5670068C5B9 /* main.m */; };
+		C32391431DE7B5670068C5B9 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = C32391421DE7B5670068C5B9 /* main.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C323913A1DE7B5670068C5B9 /* DiscreteScroll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiscreteScroll.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C323913E1DE7B5670068C5B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C32391421DE7B5670068C5B9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C32391421DE7B5670068C5B9 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,7 +46,7 @@
 		C323913C1DE7B5670068C5B9 /* DiscreteScroll */ = {
 			isa = PBXGroup;
 			children = (
-				C32391421DE7B5670068C5B9 /* main.m */,
+				C32391421DE7B5670068C5B9 /* main.c */,
 				C323913E1DE7B5670068C5B9 /* Info.plist */,
 			);
 			path = DiscreteScroll;
@@ -119,7 +119,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C32391431DE7B5670068C5B9 /* main.m in Sources */,
+				C32391431DE7B5670068C5B9 /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
