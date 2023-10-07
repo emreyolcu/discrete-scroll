@@ -6,7 +6,7 @@ Fix for macOS's unnecessary scroll acceleration
 
 ## Supported versions
 
-As of 2021, this fix works on all the recent macOS versions, specifically 10.9–11.
+As of October 2023, this fix works on macOS versions 10.9–14.0.
 
 ## Installation
 
