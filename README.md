@@ -15,7 +15,12 @@ You may download the binary
 runs in the background and allows you to scroll 3 lines with each tick of the
 wheel.
 
-It needs to be run each time you boot. If you want this to be automatic you
-may go to `System Preferences > Users & Groups > Login Items` and add
-`DiscreteScroll` to the list. If you want to undo the effect you may launch
+It needs to be run each time you boot. If you want this to be automatic you may add `DiscreteScroll` to the list of Login Items that are opened automatically.
+
+* macOS 13 and later:   `System Settings > General > Login Items` and add
+`DiscreteScroll` to the list.
+* macOS 12 and earlier:  `System Preferences > Users & Groups > Login Items` and add
+`DiscreteScroll` to the list.
+
+If you want to undo the effect you may launch
 Activity Monitor, search for `DiscreteScroll` and force it to quit.
