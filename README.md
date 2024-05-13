@@ -22,3 +22,20 @@ otherwise, go to `System Preferences > Users & Groups > Login Items`.
 
 If you want to undo the effect you may launch Activity Monitor,
 search for `DiscreteScroll` and force it to quit.
+
+## Potential problems
+
+Recent versions of macOS have made it difficult to run unsigned binaries.
+If you experience issues launching the application
+or if you can launch it but it has no effect on scrolling, try the following:
+
+- Remove the quarantine attribute by running the command
+`xattr -dr com.apple.quarantine /path/to/DiscreteScroll.app`,
+where the path points to the application bundle.
+- Disable Gatekeeper by running the command
+`spctl --add /path/to/DiscreteScroll.app`,
+where the path points to the application bundle.
+- Grant access to accessibility features:
+  1. On macOS 13.0 and later, go to `System Settings > Privacy & Security > Accessibility`;
+  otherwise, go to `System Preferences > Security & Privacy > Privacy > Accessibility`.
+  2. Add `DiscreteScroll` to the list.
