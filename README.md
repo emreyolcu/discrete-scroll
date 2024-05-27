@@ -23,7 +23,7 @@ If you want this to be automatic, do the following:
    otherwise, go to `System Preferences > Users & Groups > Login Items`.
 2. Add `DiscreteScroll` to the list.
 
-If you want to undo the effect, do the following:
+If you want to quit the application, do the following:
 
 1. Launch `Activity Monitor`.
 2. Search for `DiscreteScroll` and select it.
