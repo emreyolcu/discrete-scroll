@@ -33,11 +33,14 @@ If you want to undo the effect, do the following:
 
 The default behavior is to scroll 3 lines with each notch of the wheel.
 If you want to change this, run the following command,
-replacing `NUMBER` with the number of lines to scroll with each notch.
+replacing `LINES` with the number of lines to scroll with each notch.
+This number may even be negative, which inverts scrolling direction.
 
 ```
-defaults write com.emreyolcu.DiscreteScroll lines -int NUMBER
+defaults write com.emreyolcu.DiscreteScroll lines -int LINES
 ```
+
+You should restart the application for this setting to take effect.
 
 ### Potential problems
 
