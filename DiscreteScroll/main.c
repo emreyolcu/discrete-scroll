@@ -1,13 +1,14 @@
 #include <ApplicationServices/ApplicationServices.h>
 
+#define DEFAULT_LINES 3
 #define SIGN(x) (((x) > 0) - ((x) < 0))
 
 static int LINES;
 
 CGEventRef callback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *userInfo)
 {
-    if (!CGEventGetIntegerValueField(event, kCGScrollWheelEventIsContinuous)) {
-        int64_t delta = CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1);
+    if (CGEventGetIntegerValueField(event, kCGScrollWheelEventIsContinuous) == 0) {
+        int delta = (int)CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1);
         CGEventSetIntegerValueField(event, kCGScrollWheelEventDeltaAxis1, SIGN(delta) * LINES);
     }
 
@@ -32,24 +33,24 @@ int main(void)
         (const void **)&kAXTrustedCheckOptionPrompt, (const void **)&kCFBooleanTrue, 1,
         &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks
     );
-    Boolean trusted = AXIsProcessTrustedWithOptions(options);
+    bool trusted = AXIsProcessTrustedWithOptions(options);
     CFRelease(options);
     if (!trusted)
         displayNoticeAndExit(
             CFSTR("Restart DiscreteScroll after granting it access to accessibility features.")
         );
 
-    CFStringRef key = CFSTR("lines");
     CFNumberRef value = (CFNumberRef)CFPreferencesCopyAppValue(
-        key, kCFPreferencesCurrentApplication
+        CFSTR("lines"), kCFPreferencesCurrentApplication
     );
-    Boolean got = false;
+    bool got = false;
     if (value) {
-        got = CFNumberGetValue(value, kCFNumberIntType, &LINES);
+        if (CFGetTypeID(value) == CFNumberGetTypeID())
+            got = CFNumberGetValue(value, kCFNumberIntType, &LINES);
         CFRelease(value);
     }
     if (!got)
-        LINES = 3;
+        LINES = DEFAULT_LINES;
 
     CFMachPortRef tap = CGEventTapCreate(
         kCGSessionEventTap, kCGHeadInsertEventTap, kCGEventTapOptionDefault,

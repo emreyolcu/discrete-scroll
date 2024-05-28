@@ -14,7 +14,7 @@ As of May 2024, this application works on macOS versions 10.9–14.0.
 
 ### Installation
 
-You may download the binary [here](https://github.com/emreyolcu/discrete-scroll/releases/download/v1.0.0/DiscreteScroll.zip).
+You may download the binary [here](https://github.com/emreyolcu/discrete-scroll/releases/download/v1.0.1/DiscreteScroll.zip).
 
 It needs to be run each time you boot.
 If you want this to be automatic, do the following:
@@ -40,7 +40,10 @@ This number may even be negative, which inverts scrolling direction.
 defaults write com.emreyolcu.DiscreteScroll lines -int LINES
 ```
 
-You should restart the application for this setting to take effect.
+If you set the key `lines` to some value other than an integer,
+the default value of 3 is used as a fallback.
+
+You should restart the application for the setting to take effect.
 
 ### Potential problems
 
