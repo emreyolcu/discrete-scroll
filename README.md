@@ -25,7 +25,7 @@ after you grant it access to accessibility features.
 > for DiscreteScroll while it is running.
 > *However, you should not remove it from the list of trusted applications
 > while it is running without first unchecking the box next to its name.
-> Otherwise, your mouse might become unresponsive.*
+> Otherwise, your mouse might become unresponsive, requiring a reboot to fix.*
 
 If you want the application to run automatically when you log in,
 do the following:
