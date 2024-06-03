@@ -6,9 +6,6 @@
 static const CFStringRef AX_NOTIFICATION = CFSTR("com.apple.accessibility.api");
 static bool TRUSTED;
 
-static CFMachPortRef TAP;
-static CFRunLoopSourceRef SOURCE;
-
 static int LINES;
 
 static CGEventRef tapCallback(CGEventTapProxy proxy,
@@ -37,23 +34,14 @@ static void notificationCallback(CFNotificationCenterRef center, void *observer,
                                  CFNotificationName name, const void *object,
                                  CFDictionaryRef userInfo)
 {
-    if (CFStringCompare(name, AX_NOTIFICATION, 0) == kCFCompareEqualTo) {
-        CFRunLoopRef runLoop = CFRunLoopGetCurrent();
-        CFRunLoopPerformBlock(
-            runLoop, kCFRunLoopDefaultMode, ^{
-                bool previouslyTrusted = TRUSTED;
-                if ((TRUSTED = AXIsProcessTrusted()) != previouslyTrusted) {
-                    CFRunLoopStop(runLoop);
-                    if (SOURCE && CFRunLoopContainsSource(runLoop, SOURCE, kCFRunLoopDefaultMode)) {
-                        CGEventTapEnable(TAP, TRUSTED);
-                        CFRunLoopRun();
-                    } else if (!TRUSTED) {
-                        CFRunLoopRun();
-                    }
-                }
-            }
-        );
-    }
+    CFRunLoopRef runLoop = CFRunLoopGetCurrent();
+    CFRunLoopPerformBlock(
+        runLoop, kCFRunLoopDefaultMode, ^{
+            bool previouslyTrusted = TRUSTED;
+            if ((TRUSTED = AXIsProcessTrusted()) && !previouslyTrusted)
+                CFRunLoopStop(runLoop);
+        }
+    );
 }
 
 static bool getIntPreference(CFStringRef key, int *valuePtr)
@@ -73,9 +61,10 @@ static bool getIntPreference(CFStringRef key, int *valuePtr)
 
 int main(void)
 {
+    CFNotificationCenterRef center = CFNotificationCenterGetDistributedCenter();
+    char observer;
     CFNotificationCenterAddObserver(
-        CFNotificationCenterGetDistributedCenter(), NULL,
-        notificationCallback, AX_NOTIFICATION, NULL,
+        center, &observer, notificationCallback, AX_NOTIFICATION, NULL,
         CFNotificationSuspensionBehaviorDeliverImmediately
     );
     CFDictionaryRef options = CFDictionaryCreate(
@@ -87,20 +76,21 @@ int main(void)
     CFRelease(options);
     if (!TRUSTED)
         CFRunLoopRun();
+    CFNotificationCenterRemoveObserver(center, &observer, AX_NOTIFICATION, NULL);
 
     if (!getIntPreference(CFSTR("lines"), &LINES))
         LINES = DEFAULT_LINES;
 
-    TAP = CGEventTapCreate(
+    CFMachPortRef tap = CGEventTapCreate(
         kCGSessionEventTap, kCGHeadInsertEventTap, kCGEventTapOptionDefault,
         CGEventMaskBit(kCGEventScrollWheel), tapCallback, NULL
     );
-    if (!TAP)
+    if (!tap)
         displayNoticeAndExit(CFSTR("DiscreteScroll could not create an event tap."));
-    SOURCE = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, TAP, 0);
-    if (!SOURCE)
+    CFRunLoopSourceRef source = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, tap, 0);
+    if (!source)
         displayNoticeAndExit(CFSTR("DiscreteScroll could not create a run loop source."));
-    CFRunLoopAddSource(CFRunLoopGetCurrent(), SOURCE, kCFRunLoopDefaultMode);
+    CFRunLoopAddSource(CFRunLoopGetCurrent(), source, kCFRunLoopDefaultMode);
     CFRunLoopRun();
 
     return EXIT_SUCCESS;
