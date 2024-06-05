@@ -85,3 +85,30 @@ even though you have previously granted it access, try the following:
 1. On macOS 13.0 and later, go to `System Settings > Privacy & Security > Accessibility`;
    otherwise, go to `System Preferences > Security & Privacy > Privacy > Accessibility`.
 2. Remove `DiscreteScroll` from the list and add it again.
+
+### History
+
+#### v1.2.0 (2024-06-02)
+
+- Remove accessibility observer once granted access.
+
+#### v1.1.0 (2024-05-31)
+
+- Observe changes in accessibility access continuously.
+
+#### v1.0.1 (2024-05-28)
+
+- **Fix:** Fall back to defaults if user preference is set to incorrect type.
+
+#### v1.0.0 (2024-05-26)
+
+- Handle errors and check for accessibility access.
+- Allow configuring the number of lines scrolled per notch.
+
+#### v0.1.1 (2016-10-29)
+
+- **Fix:** Use point delta instead of line delta.
+
+#### v0.1.0 (2016-10-25)
+
+- Initial release.
