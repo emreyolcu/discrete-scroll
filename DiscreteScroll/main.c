@@ -91,6 +91,8 @@ int main(void)
     if (!source)
         displayNoticeAndExit(CFSTR("DiscreteScroll could not create a run loop source."));
     CFRunLoopAddSource(CFRunLoopGetCurrent(), source, kCFRunLoopDefaultMode);
+    CFRelease(tap);
+    CFRelease(source);
     CFRunLoopRun();
 
     return EXIT_SUCCESS;
