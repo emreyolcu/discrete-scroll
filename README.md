@@ -10,7 +10,7 @@ a constant number of lines with each notch of the wheel.
 
 ### Supported versions
 
-As of May 2024, this application works on macOS versions 10.9–14.0.
+As of November 2024, this application works on macOS versions 10.9–15.0.
 
 ### Installation
 
